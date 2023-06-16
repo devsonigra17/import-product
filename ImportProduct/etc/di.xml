@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="Dev\ImportProduct\Model\ResourceModel\File\File\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">custom_import_file</argument>
+            <argument name="resourceModel" xsi:type="string">Dev\ImportProduct\Model\ResourceModel\File</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="csv_import_data_source" xsi:type="string">Dev\ImportProduct\Model\ResourceModel\File\File\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Dev\ImportProduct\ReferenceFileUpload" type="Dev\ImportProduct\Model\FileUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">csv/tmp/import</argument>
+            <argument name="basePath" xsi:type="string">csv/import</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="csv" xsi:type="string">csv</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Dev\ImportProduct\Controller\Adminhtml\Import\Upload">
+        <arguments>
+            <argument name="fileUploader" xsi:type="object">Dev\ImportProduct\ReferenceFileUpload</argument>
+        </arguments>
+    </type>
+
+    <type name="Dev\ImportProduct\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Dev\ImportProduct\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">csvImport</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Dev\ImportProduct\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

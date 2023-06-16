@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Index</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="csv_file_listing"/>
+            <block name="custom_cron" class="Magento\Framework\View\Element\Template" template="Dev_ImportProduct::cron.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="Dev_ImportProduct::menu"
+            title="Import"
+            module="Dev_ImportProduct"
+            sortOrder="10"
+            resource="Dev_ImportProduct::menu"
+        />
+        <add 
+            id="Dev_ImportProduct::manager" 
+            title="Manager" 
+            translate="title" 
+            module="Dev_ImportProduct" 
+            parent="Dev_ImportProduct::menu" 
+            sortOrder="00" 
+            dependsOnModule="Dev_ImportProduct" 
+            resource="Dev_ImportProduct::manager"
+        />
+        <add 
+            id="Dev_ImportProduct::index" 
+            title="Index" 
+            module="Dev_ImportProduct" 
+            sortOrder="20" 
+            parent="Dev_ImportProduct::manager" 
+            action="importcsv/import/index" 
+            resource="Dev_ImportProduct::index"
+        />
+    </menu>
+</config>
